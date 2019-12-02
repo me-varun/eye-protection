@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'prgm.ui'
+# Form implementation generated from reading ui file 'prgm1.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.0
 #
@@ -13,9 +13,17 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Eye(object):
     def setupUi(self, Eye):
         Eye.setObjectName("Eye")
-        Eye.resize(547, 371)
+        Eye.resize(547, 370)
         self.centralwidget = QtWidgets.QWidget(Eye)
         self.centralwidget.setObjectName("centralwidget")
+        self.label_5 = QtWidgets.QLabel(self.centralwidget)
+        self.label_5.setGeometry(QtCore.QRect(-4, -8, 561, 381))
+        self.label_5.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.label_5.setPixmap(QtGui.QPixmap("bg.jpg"))
+        self.label_5.setScaledContents(True)
+        self.label_5.setWordWrap(False)
+        self.label_5.setOpenExternalLinks(False)
+        self.label_5.setObjectName("label_5")
         self.button1 = QtWidgets.QPushButton(self.centralwidget)
         self.button1.setGeometry(QtCore.QRect(30, 110, 121, 41))
         self.button1.setMouseTracking(True)
@@ -33,9 +41,10 @@ class Ui_Eye(object):
         font.setFamily("Forte")
         font.setPointSize(24)
         self.label1.setFont(font)
-        self.label1.setAutoFillBackground(True)
+        #self.label1.setAutoFillBackground(True)
         self.label1.setScaledContents(True)
         self.label1.setObjectName("label1")
+        self.label1.setStyleSheet('color: white')
         self.horizontalSlider = QtWidgets.QSlider(self.centralwidget)
         self.horizontalSlider.setGeometry(QtCore.QRect(20, 230, 161, 31))
         self.horizontalSlider.setMaximum(60)
@@ -106,10 +115,11 @@ class Ui_Eye(object):
         self.line.setFrameShape(QtWidgets.QFrame.HLine)
         self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line.setObjectName("line")
+        
         Eye.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(Eye)
-        self.statusbar.setObjectName("statusbar")
-        Eye.setStatusBar(self.statusbar)
+        # self.statusbar = QtWidgets.QStatusBar(Eye)
+        # self.statusbar.setObjectName("statusbar")
+        # Eye.setStatusBar(self.statusbar)
 
         self.retranslateUi(Eye)
         QtCore.QMetaObject.connectSlotsByName(Eye)
@@ -127,6 +137,7 @@ class Ui_Eye(object):
         self.radioButton_3.setText(_translate("Eye", "Eye Protection"))
         self.label_3.setText(_translate("Eye", "Min"))
         self.label_4.setText(_translate("Eye", "Sec"))
+#import abc_rc
 
 
 if __name__ == "__main__":
