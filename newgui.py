@@ -10,13 +10,11 @@ class Ui_Eye(object):
     n_mod=1
 
 
-    def eye_mode():
-        pass    
+    def eye_mode(self):    
         self.time_="20:00"
         self.rest_="00:20"
 
-    def timer_():
-        pass
+    def timer_(self):
         self.time_=self.txt_b1
         self.rest_=self.txt_b2    
 
@@ -33,28 +31,21 @@ class Ui_Eye(object):
         self.time_="00:00"
         self.lcdNumber.display(self.time_)
 
-    def showTime():
-        time = QTime.currentTime()
-        text = time.toString('mm:ss')
-        if time.second() %2 == 0:
-            text = text[:2] + " " + text[:3]
-        self.lcdNumber.display(text)
+
 
     def valuechange_1(self):
         self.txt_b1 = str(self.horizontalSlider.value())
         self.textBrowser1.setText(self.txt_b1)
 
     def mode_(self):
-        if (self.radioButton.isChecked()):
-            #self.n_mod = "1"
+        if (self.radioButton_2.isChecked()):
             self.eye_mode()
                 #Eye Protection
-        elif (self.radioButton_2.isChecked()):
-            #self.n_mod = "2"
+        elif (self.radioButton.isChecked()):
             self.timer_()    #Timer
         else:
-            self.n_mod = "3"    #costum timer
-        #self.textBrowser1.setText(self.n_mod)
+            #costum timer    
+            pass        
         
         
         
@@ -66,12 +57,6 @@ class Ui_Eye(object):
 
 
     def setupUi(self, Eye):
-        # Basic Design of the programme 
-
-        # timer = QTimer(self)
-        # timer.timeout.connect(self.showTime)
-        # timer.start(1000)
-        #self.showTime()
         Eye.setObjectName("Eye")
         Eye.resize(547, 370)
         self.centralwidget = QtWidgets.QWidget(Eye)
