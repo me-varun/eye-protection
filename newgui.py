@@ -27,8 +27,15 @@ class Ui_Eye(object):
         
         self.lcdNumber.display(text)
 
-    def valuechange(self):
-      self.textBrowser2.setText(self.horizontalSlider.value())
+    def valuechange_1(self):
+        self.txt_b1 = str(self.horizontalSlider.value())
+        self.textBrowser1.setText(self.txt_b1)
+        
+        
+        
+    def valuechange_2(self):
+        self.txt_b2 = str(self.horizontalSlider_2.value())
+        self.textBrowser2.setText(self.txt_b2)
 
 
     def setupUi(self, Eye):
@@ -151,7 +158,8 @@ class Ui_Eye(object):
         self.horizontalSlider.setTickPosition(QtWidgets.QSlider.TicksAbove)
         self.horizontalSlider.setObjectName("horizontalSlider")
         #self.horizontalSlider.setTickPosition()
-        self.horizontalSlider.valueChanged.connect(self.valuechange)
+        self.horizontalSlider.valueChanged.connect(self.valuechange_1)
+        
         #--------------
         self.horizontalSlider_2 = QtWidgets.QSlider(self.centralwidget)
         self.horizontalSlider_2.setGeometry(QtCore.QRect(20, 300, 161, 31))
@@ -160,6 +168,7 @@ class Ui_Eye(object):
         self.horizontalSlider_2.setOrientation(QtCore.Qt.Horizontal)
         self.horizontalSlider_2.setTickPosition(QtWidgets.QSlider.TicksAbove)
         self.horizontalSlider_2.setObjectName("horizontalSlider_2")
+        self.horizontalSlider_2.valueChanged.connect(self.valuechange_2)
 #-------------------------------------------------------------
         self.textBrowser1 = QtWidgets.QTextBrowser(self.centralwidget)
         self.textBrowser1.setGeometry(QtCore.QRect(190, 230, 51, 31))
@@ -180,7 +189,16 @@ class Ui_Eye(object):
         self.label_3.setStyleSheet('color: white')
         self.label_4.setStyleSheet('color: white')
         self.label.setStyleSheet('color: white')
-        
+#--------------------------------------------------------------------
+#-----------------------EXPERIMENTAL AREA ---------------------------
+        self.textBrowser1.setText(str(self.horizontalSlider.value()))
+
+
+
+
+
+
+#--------------------------------------------------------------------
         #Imp code parts
         #self.radioButton_1.toggled.connect(lambda:self.btnstate(self.b1))
         
