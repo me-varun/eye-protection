@@ -3,9 +3,22 @@ from PyQt5.QtCore import QTimer , QTime
 
 class Ui_Eye(object):
 
-    time_ ="00:00" 
+    time_ ="20:00" 
+    rest_ ="00:20"
     txt_b1 = 0
     txt_b2 = 0
+    n_mod=1
+
+
+    def eye_mode():
+        pass    
+        self.time_="20:00"
+        self.rest_="00:20"
+
+    def timer_():
+        pass
+        self.time_=self.txt_b1
+        self.rest_=self.txt_b2    
 
     def start_press(self):
         if self.button1.text() == "Start":
@@ -17,25 +30,39 @@ class Ui_Eye(object):
     
 
     def reset_Press(self):
-        self.textBrowser1.setText("Reset Initiated!")
+        self.time_="00:00"
+        self.lcdNumber.display(self.time_)
 
     def showTime():
         time = QTime.currentTime()
         text = time.toString('mm:ss')
         if time.second() %2 == 0:
             text = text[:2] + " " + text[:3]
-        
         self.lcdNumber.display(text)
 
     def valuechange_1(self):
         self.txt_b1 = str(self.horizontalSlider.value())
         self.textBrowser1.setText(self.txt_b1)
+
+    def mode_(self):
+        if (self.radioButton.isChecked()):
+            #self.n_mod = "1"
+            self.eye_mode()
+                #Eye Protection
+        elif (self.radioButton_2.isChecked()):
+            #self.n_mod = "2"
+            self.timer_()    #Timer
+        else:
+            self.n_mod = "3"    #costum timer
+        #self.textBrowser1.setText(self.n_mod)
+        
         
         
         
     def valuechange_2(self):
         self.txt_b2 = str(self.horizontalSlider_2.value())
         self.textBrowser2.setText(self.txt_b2)
+
 
 
     def setupUi(self, Eye):
@@ -133,22 +160,25 @@ class Ui_Eye(object):
         #self.radioButton.setCursor(QtGui.QCursor(QtCore.Qt.CrossCursor))
         self.radioButton.setChecked(True)
         self.radioButton.setStyleSheet("QRadioButton {  color:white ; }")
+        self.radioButton.toggled.connect(self.mode_)
         #----------
         self.radioButton_2 = QtWidgets.QRadioButton(self.centralwidget)
         self.radioButton_2.setGeometry(QtCore.QRect(390, 250, 82, 17))
         self.radioButton_2.setObjectName("radioButton_2")
         self.radioButton_2.setStyleSheet("QRadioButton {  color:white ; }")
+        self.radioButton_2.toggled.connect(self.mode_)
         #----------
        #self.radioButton_3{color: rgb(255, 255, 255);}
         self.radioButton_3 = QtWidgets.QRadioButton(self.centralwidget )
         self.radioButton_3.setGeometry(QtCore.QRect(390, 200, 111, 17))
         self.radioButton_3.setObjectName("radioButton_3")
         self.radioButton_3.setStyleSheet("QRadioButton {  color:white ; }")
+        self.radioButton_3.toggled.connect(self.mode_)
 #-------------------------------------------------------
         self.lcdNumber = QtWidgets.QLCDNumber(self.centralwidget)
         self.lcdNumber.setGeometry(QtCore.QRect(280, 20, 231, 71))
         self.lcdNumber.setObjectName("lcdNumber")
-       # self.lcdNumber.display("10:00")
+        self.lcdNumber.display(self.time_)
 #---------------------------------------------------------  
         self.horizontalSlider = QtWidgets.QSlider(self.centralwidget)
         self.horizontalSlider.setGeometry(QtCore.QRect(20, 230, 161, 31))
@@ -163,7 +193,7 @@ class Ui_Eye(object):
         #--------------
         self.horizontalSlider_2 = QtWidgets.QSlider(self.centralwidget)
         self.horizontalSlider_2.setGeometry(QtCore.QRect(20, 300, 161, 31))
-        self.horizontalSlider_2.setMaximum(120)
+        self.horizontalSlider_2.setMaximum(60)
         self.horizontalSlider_2.setSingleStep(5)
         self.horizontalSlider_2.setOrientation(QtCore.Qt.Horizontal)
         self.horizontalSlider_2.setTickPosition(QtWidgets.QSlider.TicksAbove)
@@ -173,17 +203,18 @@ class Ui_Eye(object):
         self.textBrowser1 = QtWidgets.QTextBrowser(self.centralwidget)
         self.textBrowser1.setGeometry(QtCore.QRect(190, 230, 51, 31))
         self.textBrowser1.setObjectName("textBrowser1")
+        self.textBrowser1.setText(str(self.txt_b1))
         #----------------
         self.textBrowser2 = QtWidgets.QTextBrowser(self.centralwidget)
         self.textBrowser2.setGeometry(QtCore.QRect(190, 300, 51, 31))
         self.textBrowser2.setObjectName("textBrowser2")
+        self.textBrowser2.setText(str(self.txt_b2))
 #------------------------------------------------------------------    
         self.line = QtWidgets.QFrame(self.centralwidget)
         self.line.setGeometry(QtCore.QRect(-3, 149, 551, 31))
         self.line.setFrameShape(QtWidgets.QFrame.HLine)
         self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line.setObjectName("line")
-
 #--------------------------------------------------------------------   
         self.label_2.setStyleSheet('color: white')
         self.label_3.setStyleSheet('color: white')
@@ -191,7 +222,7 @@ class Ui_Eye(object):
         self.label.setStyleSheet('color: white')
 #--------------------------------------------------------------------
 #-----------------------EXPERIMENTAL AREA ---------------------------
-        self.textBrowser1.setText(str(self.horizontalSlider.value()))
+        #self.textBrowser1.setText(str(self.horizontalSlider.value()))
 
 
 
