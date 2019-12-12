@@ -75,7 +75,8 @@ class Ui_Eye(object):
 
     def setupUi(self, Eye):
         Eye.setObjectName("Eye")
-        Eye.resize(547, 370)
+        #Eye.resize(547, 370)
+        Eye.setFixedSize(547, 370)
         self.centralwidget = QtWidgets.QWidget(Eye)
         self.centralwidget.setObjectName("centralwidget")
 
