@@ -236,7 +236,8 @@ class Ui_Eye(object):
 
 
 #-----------------------EXPERIMENTAL AREA ---------------------------
-        #This tab 
+        #This tab
+        # Steps to add Timer  
 
 
 
