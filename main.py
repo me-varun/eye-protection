@@ -78,29 +78,51 @@
 
 # a = main()
 #--------------------------------------------------------------------------------------------------
+# from PyQt5 import QtCore
+
+# def start_timer(slot, count,min_,sec ,interval=1000):
+#     counter = 0
+#     print(min_,sec,end="-->")
+#     def handler():
+#         nonlocal counter
+#         counter += 1
+#         slot(counter)
+#         if counter >= count:
+#             timer.stop()
+#             timer.deleteLater()
+#     timer = QtCore.QTimer()
+#     timer.timeout.connect(handler)
+#     timer.start(interval)
+
+# def timer_func(count):
+#     print('Timer:', count)
+#     if count >= 5:
+#         QtCore.QCoreApplication.quit()
+
+# app = QtCore.QCoreApplication([])
+# min_ = 1
+# sec = 20
+# start_timer(timer_func,5,min_,sec)
+# app.exec_()
+
+
 from PyQt5 import QtCore
-
-def start_timer(slot, count,min_,sec ,interval=1000):
-    counter = 0
-    print(min_,sec,end="-->")
-    def handler():
-        nonlocal counter
-        counter += 1
-        slot(counter)
-        if counter >= count:
-            timer.stop()
-            timer.deleteLater()
-    timer = QtCore.QTimer()
-    timer.timeout.connect(handler)
-    timer.start(interval)
-
-def timer_func(count):
-    print('Timer:', count)
-    if count >= 5:
-        QtCore.QCoreApplication.quit()
 
 app = QtCore.QCoreApplication([])
 min_ = 1
 sec = 20
-start_timer(timer_func,5,min_,sec)
+count =0
+def abc():
+    global count
+    count = 1 + count
+    if count <=5 :
+        print(count)
+    else :
+        QtCore.QCoreApplication.quit()
+
+timer = QtCore.QTimer()
+timer.timeout.connect(abc)
+timer.start(1000)
 app.exec_()
+a=10
+print(a)

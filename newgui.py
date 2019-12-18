@@ -4,9 +4,11 @@ class Ui_Eye(object):
 
     time_ ="20:00" 
     rest_ ="00:20"
+    min_ , sec_ = 2 , 3  
     txt_b1 = 0
     txt_b2 = 0
     n_mod=1
+    working = True
 
 
     def eye_mode(self):    
@@ -17,21 +19,27 @@ class Ui_Eye(object):
         self.time_=self.txt_b1
         self.rest_=self.txt_b2    
 
-    # def start_timer(slot, count=1, interval=1000):
-    #     counter = 0
-    #         def handler():
-    #             nonlocal counter
-    #             counter += 1
-    #             slot(counter)
-    #             if counter >= count:
-    #                 timer.stop()
-    #                 timer.deleteLater()
-    #         timer = QtCore.QTimer()
-    #         timer.timeout.connect(handler)
-    #         timer.start(interval)
+    def start_timer(interval=1000):
+        def handler():
+            self.display_timer()
+            if self.working :
+                timer.stop()
+                timer.deleteLater()
+        timer = QtCore.QTimer()
+        timer.timeout.connect(handler)
+        timer.start(interval)
 
-    # def timer_func(count):
-        
+    def display_timer():
+        abc_ = str(self.min_)+":"+str(self.sec_)
+        self.lcdNumber.display(str(abc_))
+        if self.sec_ == 0 :
+            if self.min_ == 0 :
+                self.lcdNumber.display("Done!!")
+            else:
+                self.sec_ =60
+                self.min_ = self.min - 1
+
+
         
         
         
@@ -43,9 +51,12 @@ class Ui_Eye(object):
     def start_press(self):
         if self.button1.text() == "Start":
             self.button1.setText("Pause")
+            self.working = True
+            self.start_timer(990)
 
         else:
-            self.button1.setText("Start")     
+            self.button1.setText("Start")
+            self.working = False     
        
     def reset_Press(self):
         self.time_="00:00"
