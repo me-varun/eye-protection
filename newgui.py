@@ -1,24 +1,21 @@
 from PyQt5 import QtCore, QtGui, QtWidgets 
 
 class Ui_Eye(object):
-
-    time_ ="20:00" 
-    rest_ ="00:20"
-    min_ , sec_ = 2 , 3  
+    min_ = 20 
+    sec_ = 0  
     txt_b1 = 0
     txt_b2 = 0
     n_mod=1
     working = True
-    timer = QtCore.QTimer()
 
 
-    def eye_mode(self):    
-        self.time_="20:00"
-        self.rest_="00:20"
+    # def eye_mode(self):    
+    #     self.time_="20:00"
+    #     self.rest_="00:20"
 
     def timer_(self):
-        self.time_=self.txt_b1
-        self.rest_=self.txt_b2    
+        self.min_=self.txt_b1
+        self.sec_=self.txt_b2    
 
     def start_timer(self,interval=950):
         def handler():
@@ -37,39 +34,23 @@ class Ui_Eye(object):
             if self.min_ == 0 :
                 self.lcdNumber.display("Done!!")
             else:
-                self.sec_ =60
+                self.sec_ =59
                 self.min_ = self.min_ - 1
         else :
             self.sec_ = self.sec_ - 1
-
-#---------------------------------------=-
-    # def display_timer(self):
-    #     self.sec_ = self.sec_ - 1
-    #     if self.working:
-    #         self.lcdNumber.display(self.sec_)
-    #     else:
-    #         pass
-
-
-
-    # def print_t(self):
-    #     #self.lcdNumber.display("str(t)")
-    #     self.timer.timeout.connect(self.display_timer)
-    #     self.timer.start(1000)
 
     def start_press(self):
         if self.button1.text() == "Start":
             self.button1.setText("Pause")
             self.working = True
             self.start_timer()
-            
 
         else:
             self.button1.setText("Start")
             self.working = False     
        
     def reset_Press(self):
-        self.time_="00:00"
+        self.time_=self.txt_b1
         self.lcdNumber.display(self.sec_)
         #self.working = False
 
@@ -77,6 +58,7 @@ class Ui_Eye(object):
         self.txt_b1 = str(self.horizontalSlider.value())
         self.textBrowser1.setText(self.txt_b1)
         self.lcdNumber.display(str(str(self.txt_b1)+":00"))
+        self.min_ = int(self.txt_b1)
 
     def valuechange_2(self):
         self.txt_b2 = str(self.horizontalSlider_2.value())
@@ -212,9 +194,7 @@ class Ui_Eye(object):
         self.lcdNumber = QtWidgets.QLCDNumber(self.centralwidget)
         self.lcdNumber.setGeometry(QtCore.QRect(280, 20, 231, 71))
         self.lcdNumber.setObjectName("lcdNumber")
-        self.lcdNumber.display(self.time_)
-        #self.lcdNumber.display(str(str(self.txt_b1) + str(self.txt_b2)))
-
+        self.lcdNumber.display(str(str(self.min_)+ ":" +str(self.sec_)))
 #--------------------Horizontal Slider------------------------  
         self.horizontalSlider = QtWidgets.QSlider(self.centralwidget)
         self.horizontalSlider.setGeometry(QtCore.QRect(20, 230, 161, 31))
@@ -278,6 +258,8 @@ class Ui_Eye(object):
     def retranslateUi(self, Eye):
         _translate = QtCore.QCoreApplication.translate
         Eye.setWindowTitle(_translate("Eye", "Eye Protector"))
+        # print(QtGui.QIcon("bg1.png"))
+        # Eye.setWindowIcon("Eye",QtGui.QIcon("bg1.png"))
         self.button1.setText(_translate("Eye", "Start"))
         self.radioButton.setText(_translate("Eye", "Custom Timer","color: white"))
         self.label1.setText(_translate("Eye", "Time Remaining"))

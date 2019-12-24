@@ -106,7 +106,7 @@
 # app.exec_()
 
 
-from PyQt5 import QtCore
+# from PyQt5 import QtCore,QtMultimedia
 
 # class ab():
 #     count = 0
@@ -128,22 +128,38 @@ from PyQt5 import QtCore
 
 
 
-app = QtCore.QCoreApplication([])
-min_ = 1
-sec = 20
-count =0
-def abc():
-    global count
-    count = 1 + count
-    if count <=5 :
-        print(count)
-    else :
-        timer.stop()
-        timer.deleteLater()
-        #QtCore.QCoreApplication.quit()
+# app = QtCore.QCoreApplication([])
 
-timer = QtCore.QTimer()
-timer.timeout.connect(abc)
-timer.start(1000)
+# QtMultimedia.QSound mm("music.wav")
+# mm.play()
+# min_ = 1
+# sec = 20
+# count =0
+# def abc():
+#     global count
+#     count = 1 + count
+#     if count <=5 :
+#         print(count)
+#     else :
+#         timer.stop()
+#         timer.deleteLater()
+#         #QtCore.QCoreApplication.quit()
+
+# timer = QtCore.QTimer()
+# timer.timeout.connect(abc)
+# timer.start(1000)
+# app.exec()
+# print("We are done")
+import time
+from PyQt5 import QtCore,QtMultimedia
+import PyQt5.QtMultimedia as M
+app = QtCore.QCoreApplication([])
+abc = QtCore.QUrl.fromLocalFile("m.wav")
+content = M.QMediaContent(abc)
+player = M.QMediaPlayer()
+player.setMedia(content)
+player.play()
+# time.sleep(10)
+# player.pause()
 app.exec()
-print("We are done")
+print("done!!")
