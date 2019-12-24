@@ -108,6 +108,26 @@
 
 from PyQt5 import QtCore
 
+# class ab():
+#     count = 0
+#     d = True
+
+#     def abc:
+#         self.count = self.count + 1
+#         if d:
+#             print(self.count)
+#         else:
+#             QtCore.QCoreApplication.quit()
+#     def main_():
+#         if self.count <=5 or self.count > 10 and self.count <15:
+
+
+
+# obj1 = ab()
+# obj1.main_()
+
+
+
 app = QtCore.QCoreApplication([])
 min_ = 1
 sec = 20
@@ -118,11 +138,12 @@ def abc():
     if count <=5 :
         print(count)
     else :
-        QtCore.QCoreApplication.quit()
+        timer.stop()
+        timer.deleteLater()
+        #QtCore.QCoreApplication.quit()
 
 timer = QtCore.QTimer()
 timer.timeout.connect(abc)
 timer.start(1000)
-app.exec_()
-a=10
-print(a)
+app.exec()
+print("We are done")

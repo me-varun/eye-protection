@@ -9,6 +9,7 @@ class Ui_Eye(object):
     txt_b2 = 0
     n_mod=1
     working = True
+    timer = QtCore.QTimer()
 
 
     def eye_mode(self):    
@@ -19,17 +20,17 @@ class Ui_Eye(object):
         self.time_=self.txt_b1
         self.rest_=self.txt_b2    
 
-    def start_timer(interval=1000):
+    def start_timer(self,interval=950):
         def handler():
             self.display_timer()
-            if self.working :
+            if not self.working :
                 timer.stop()
                 timer.deleteLater()
         timer = QtCore.QTimer()
         timer.timeout.connect(handler)
         timer.start(interval)
 
-    def display_timer():
+    def display_timer(self):
         abc_ = str(self.min_)+":"+str(self.sec_)
         self.lcdNumber.display(str(abc_))
         if self.sec_ == 0 :
@@ -37,22 +38,31 @@ class Ui_Eye(object):
                 self.lcdNumber.display("Done!!")
             else:
                 self.sec_ =60
-                self.min_ = self.min - 1
+                self.min_ = self.min_ - 1
+        else :
+            self.sec_ = self.sec_ - 1
+
+#---------------------------------------=-
+    # def display_timer(self):
+    #     self.sec_ = self.sec_ - 1
+    #     if self.working:
+    #         self.lcdNumber.display(self.sec_)
+    #     else:
+    #         pass
 
 
-        
-        
-        
-        
-        # print('Timer:', count)
-        # if count >= 5:
-        #     QtCore.QCoreApplication.quit()
+
+    # def print_t(self):
+    #     #self.lcdNumber.display("str(t)")
+    #     self.timer.timeout.connect(self.display_timer)
+    #     self.timer.start(1000)
 
     def start_press(self):
         if self.button1.text() == "Start":
             self.button1.setText("Pause")
             self.working = True
-            self.start_timer(990)
+            self.start_timer()
+            
 
         else:
             self.button1.setText("Start")
@@ -60,7 +70,8 @@ class Ui_Eye(object):
        
     def reset_Press(self):
         self.time_="00:00"
-        self.lcdNumber.display(self.time_)
+        self.lcdNumber.display(self.sec_)
+        #self.working = False
 
     def valuechange_1(self):
         self.txt_b1 = str(self.horizontalSlider.value())
