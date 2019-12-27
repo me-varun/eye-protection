@@ -3,10 +3,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Eye(object):
     min_ = 20 
     sec_ = 0  
-    txt_b1 = 0
+    txt_b1 = 20
     txt_b2 = 0
     n_mod=1
-    working = True
+    working = False
 
 
     # def eye_mode(self):    
@@ -55,10 +55,13 @@ class Ui_Eye(object):
         #self.working = False
 
     def valuechange_1(self):
-        self.txt_b1 = str(self.horizontalSlider.value())
-        self.textBrowser1.setText(self.txt_b1)
-        self.lcdNumber.display(str(str(self.txt_b1)+":00"))
-        self.min_ = int(self.txt_b1)
+        if self.working == True:
+            pass
+        else:
+            self.txt_b1 = str(self.horizontalSlider.value())
+            self.textBrowser1.setText(self.txt_b1)
+            self.lcdNumber.display(str(str(self.txt_b1)+":00"))
+            self.min_ = int(self.txt_b1)
 
     def valuechange_2(self):
         self.txt_b2 = str(self.horizontalSlider_2.value())
