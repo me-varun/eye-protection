@@ -189,12 +189,12 @@ class Ui_Eye(object):
         self.radioButton_3.setStyleSheet("QRadioButton {  color:white ; }")
         self.radioButton_3.toggled.connect(self.mode_)
 
-
 #--------------------LCD Screen------------------------------
         self.lcdNumber = QtWidgets.QLCDNumber(self.centralwidget)
         self.lcdNumber.setGeometry(QtCore.QRect(280, 20, 231, 71))
         self.lcdNumber.setObjectName("lcdNumber")
         self.lcdNumber.display(str(str(self.min_)+ ":" +str(self.sec_)))
+
 #--------------------Horizontal Slider------------------------  
         self.horizontalSlider = QtWidgets.QSlider(self.centralwidget)
         self.horizontalSlider.setGeometry(QtCore.QRect(20, 230, 161, 31))
