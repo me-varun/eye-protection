@@ -1,12 +1,18 @@
 from PyQt5 import QtCore, QtGui, QtWidgets 
+import PyQt5.QtMultimedia as M
 
 class Ui_Eye(object):
     min_ = 20 
-    sec_ = 0  
+    sec_ = 10  
     txt_b1 = 20
     txt_b2 = 0
     n_mod=1
     working = False
+    # Music 
+    abc = QtCore.QUrl.fromLocalFile("m.wav")
+    content = M.QMediaContent(abc)
+    player = M.QMediaPlayer()
+    player.setMedia(content)
 
 
     # def eye_mode(self):    
@@ -32,7 +38,9 @@ class Ui_Eye(object):
         self.lcdNumber.display(str(abc_))
         if self.sec_ == 0 :
             if self.min_ == 0 :
+                self.player.play()
                 self.lcdNumber.display("Done!!")
+                self.working = False
             else:
                 self.sec_ =59
                 self.min_ = self.min_ - 1
