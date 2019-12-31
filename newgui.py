@@ -2,12 +2,14 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import PyQt5.QtMultimedia as M
 
 class Ui_Eye(object):
-    min_ = 20 
+    min_ = 0 
     sec_ = 10  
     txt_b1 = 20
-    txt_b2 = 0
+    txt_b2 = 20
     n_mod=1
     working = False
+    rest = False
+
     # Music 
     abc = QtCore.QUrl.fromLocalFile("m.wav")
     content = M.QMediaContent(abc)
@@ -39,8 +41,17 @@ class Ui_Eye(object):
         if self.sec_ == 0 :
             if self.min_ == 0 :
                 self.player.play()
-                self.lcdNumber.display("Done!!")
-                self.working = False
+                #self.lcdNumber.display("Done!!")
+                #self.working = False
+                if self.rest == True:
+                    self.min_ = self.txt_b1
+                    self.sec_ = int(0)
+                    self.rest = False
+                else:
+                    self.min_ = int(0)
+                    self.sec_ = self.txt_b2
+                    self.rest = True
+
             else:
                 self.sec_ =59
                 self.min_ = self.min_ - 1
@@ -58,9 +69,12 @@ class Ui_Eye(object):
             self.working = False     
        
     def reset_Press(self):
-        self.time_=self.txt_b1
         self.lcdNumber.display(self.sec_)
-        #self.working = False
+        self.working = False
+        self.min_ = int(self.txt_b1)
+        self.sec_ = int(0)
+        ab_ = str(self.min_)+":00"
+        self.lcdNumber.display(str(ab_))
 
     def valuechange_1(self):
         if self.working == True:
@@ -70,12 +84,12 @@ class Ui_Eye(object):
             self.textBrowser1.setText(self.txt_b1)
             self.lcdNumber.display(str(str(self.txt_b1)+":00"))
             self.min_ = int(self.txt_b1)
-            self.sec_ = 00
+            self.sec_ = int(0)
 
     def valuechange_2(self):
         self.txt_b2 = str(self.horizontalSlider_2.value())
         self.textBrowser2.setText(self.txt_b2)
-        self.sec_ = self.txt_b2
+        self.sec_ = int(self.txt_b2)
         #self.lcdNumber.display(str(str(self.txt_b1)+":" + str(self.txt_b2)))
 
     def mode_(self):
@@ -213,6 +227,7 @@ class Ui_Eye(object):
         self.horizontalSlider.setGeometry(QtCore.QRect(20, 230, 161, 31))
         self.horizontalSlider.setMaximum(60)
         self.horizontalSlider.setSingleStep(5)
+        self.horizontalSlider.setValue(self.txt_b1)
         self.horizontalSlider.setOrientation(QtCore.Qt.Horizontal)
         self.horizontalSlider.setTickPosition(QtWidgets.QSlider.TicksAbove)
         self.horizontalSlider.setObjectName("horizontalSlider")
@@ -225,6 +240,7 @@ class Ui_Eye(object):
         self.horizontalSlider_2.setMaximum(60)
         self.horizontalSlider_2.setSingleStep(5)
         self.horizontalSlider_2.setOrientation(QtCore.Qt.Horizontal)
+        self.horizontalSlider_2.setValue(self.txt_b2)
         self.horizontalSlider_2.setTickPosition(QtWidgets.QSlider.TicksAbove)
         self.horizontalSlider_2.setObjectName("horizontalSlider_2")
         self.horizontalSlider_2.valueChanged.connect(self.valuechange_2)
