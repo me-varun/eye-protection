@@ -62,10 +62,12 @@ class Ui_Eye(object):
             self.textBrowser1.setText(self.txt_b1)
             self.lcdNumber.display(str(str(self.txt_b1)+":00"))
             self.min_ = int(self.txt_b1)
+            self.sec_ = 00
 
     def valuechange_2(self):
         self.txt_b2 = str(self.horizontalSlider_2.value())
         self.textBrowser2.setText(self.txt_b2)
+        self.sec_ = self.txt_b2
         #self.lcdNumber.display(str(str(self.txt_b1)+":" + str(self.txt_b2)))
 
     def mode_(self):
