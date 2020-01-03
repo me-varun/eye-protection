@@ -96,14 +96,14 @@ class Ui_Eye(object):
 
     def mode_(self):
         if (self.radioButton_3.isChecked()):
-
+            self.player.setVolume(100)
             self.eye_mode()
                 #Eye Protection
         elif (self.radioButton_2.isChecked()):
-            self.timer_()    #Timer
+            self.player.setVolume(100)
+            self.timer_()    #custom Timer
         else:
-            #costum timer    
-            pass        
+            self.player.setVolume(0)           
          
 #----------------Gui Initialization---------------------
 
@@ -202,7 +202,6 @@ class Ui_Eye(object):
         self.radioButton.setGeometry(QtCore.QRect(390, 290, 141, 41))
         self.radioButton.setObjectName("radioButton")
         #self.radioButton.setCursor(QtGui.QCursor(QtCore.Qt.CrossCursor))
-        self.radioButton.setChecked(True)
         self.radioButton.setStyleSheet("QRadioButton {  color:white ; }")
         self.radioButton.toggled.connect(self.mode_)
         #----------
@@ -215,6 +214,7 @@ class Ui_Eye(object):
        #self.radioButton_3{color: rgb(255, 255, 255);}
         self.radioButton_3 = QtWidgets.QRadioButton(self.centralwidget )
         self.radioButton_3.setGeometry(QtCore.QRect(390, 200, 111, 17))
+        self.radioButton_3.setChecked(True)
         self.radioButton_3.setObjectName("radioButton_3")
         self.radioButton_3.setStyleSheet("QRadioButton {  color:white ; }")
         self.radioButton_3.toggled.connect(self.mode_)
@@ -290,15 +290,13 @@ class Ui_Eye(object):
     def retranslateUi(self, Eye):
         _translate = QtCore.QCoreApplication.translate
         Eye.setWindowTitle(_translate("Eye", "Eye Protector"))
-        # print(QtGui.QIcon("bg1.png"))
-        # Eye.setWindowIcon("Eye",QtGui.QIcon("bg1.png"))
         self.button1.setText(_translate("Eye", "Start"))
-        self.radioButton.setText(_translate("Eye", "Custom Timer","color: white"))
+        self.radioButton.setText(_translate("Eye", "Mute","color: white"))
         self.label1.setText(_translate("Eye", "Time Remaining"))
         self.label.setText(_translate("Eye", "Working Timer"))
         self.label_2.setText(_translate("Eye", "Rest Timer"))
         self.button1_2.setText(_translate("Eye", "Reset"))
-        self.radioButton_2.setText(_translate("Eye", "Timer"))
+        self.radioButton_2.setText(_translate("Eye", "Custom Timer"))
         self.radioButton_3.setText(_translate("Eye", "Eye Protection"))
         self.label_3.setText(_translate("Eye", "Min"))
         self.label_4.setText(_translate("Eye", "Sec"))
