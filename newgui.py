@@ -2,11 +2,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import PyQt5.QtMultimedia as M
 
 class Ui_Eye(object):
-    min_ = 0 
-    sec_ = 10  
+    min_ = int(20) 
+    sec_ = int(00)  
     txt_b1 = 20
     txt_b2 = 20
-    n_mod=1
+    #n_mod=1
     working = False
     rest = False
 
@@ -17,13 +17,17 @@ class Ui_Eye(object):
     player.setMedia(content)
 
 
-    def eye_mode(self):    
+    def eye_mode(self):
+        self.horizontalSlider.setEnabled(False)
+        self.horizontalSlider_2.setEnabled(False)    
         self.min_=int(20)
         self.sec_= int(0)
         self.txt_b2 = int(20)
         self.lcdNumber.display("20:00")
 
     def timer_(self):
+        self.horizontalSlider.setEnabled(True)
+        self.horizontalSlider_2.setEnabled(True)
         self.min_=self.txt_b1
         self.sec_=self.txt_b2    
 
@@ -234,8 +238,9 @@ class Ui_Eye(object):
         self.horizontalSlider.setOrientation(QtCore.Qt.Horizontal)
         self.horizontalSlider.setTickPosition(QtWidgets.QSlider.TicksAbove)
         self.horizontalSlider.setObjectName("horizontalSlider")
-        #self.horizontalSlider.setTickPosition()
+        #self.horizontalSlider.setEnabled(False)
         self.horizontalSlider.valueChanged.connect(self.valuechange_1)
+        self.horizontalSlider.setEnabled(False)
         
         #--------------
         self.horizontalSlider_2 = QtWidgets.QSlider(self.centralwidget)
@@ -247,6 +252,7 @@ class Ui_Eye(object):
         self.horizontalSlider_2.setTickPosition(QtWidgets.QSlider.TicksAbove)
         self.horizontalSlider_2.setObjectName("horizontalSlider_2")
         self.horizontalSlider_2.valueChanged.connect(self.valuechange_2)
+        self.horizontalSlider_2.setEnabled(False)
 
 
 #--------------------Text Browser-----------------------------
