@@ -17,9 +17,11 @@ class Ui_Eye(object):
     player.setMedia(content)
 
 
-    # def eye_mode(self):    
-    #     self.time_="20:00"
-    #     self.rest_="00:20"
+    def eye_mode(self):    
+        self.min_=int(20)
+        self.sec_= int(0)
+        self.txt_b2 = int(20)
+        self.lcdNumber.display("20:00")
 
     def timer_(self):
         self.min_=self.txt_b1
@@ -93,10 +95,11 @@ class Ui_Eye(object):
         #self.lcdNumber.display(str(str(self.txt_b1)+":" + str(self.txt_b2)))
 
     def mode_(self):
-        if (self.radioButton_2.isChecked()):
+        if (self.radioButton_3.isChecked()):
+
             self.eye_mode()
                 #Eye Protection
-        elif (self.radioButton.isChecked()):
+        elif (self.radioButton_2.isChecked()):
             self.timer_()    #Timer
         else:
             #costum timer    
